@@ -14,7 +14,7 @@ app = FastAPI(
 )
 
 # Load the trained model
-model_path = os.path.join("..", "ml_model", "crop_model.pkl")
+model_path = "ml_model/crop_model.pkl"
 model = joblib.load(model_path)
 
 # Default values for missing inputs
