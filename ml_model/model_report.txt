@@ -1,5 +1,5 @@
 
-RandomForest Accuracy: 0.9886
+RandomForest Accuracy: 0.9932
               precision    recall  f1-score   support
 
        apple       1.00      1.00      1.00        23
@@ -10,51 +10,51 @@ RandomForest Accuracy: 0.9886
       coffee       1.00      1.00      1.00        17
       cotton       1.00      1.00      1.00        17
       grapes       1.00      1.00      1.00        14
-        jute       0.92      0.96      0.94        23
+        jute       0.92      1.00      0.96        23
  kidneybeans       1.00      1.00      1.00        20
-      lentil       0.85      1.00      0.92        11
+      lentil       0.92      1.00      0.96        11
        maize       1.00      1.00      1.00        21
        mango       1.00      1.00      1.00        19
-   mothbeans       1.00      0.92      0.96        24
+   mothbeans       1.00      0.96      0.98        24
     mungbean       1.00      1.00      1.00        19
    muskmelon       1.00      1.00      1.00        17
       orange       1.00      1.00      1.00        14
       papaya       1.00      1.00      1.00        23
   pigeonpeas       1.00      1.00      1.00        23
  pomegranate       1.00      1.00      1.00        23
-        rice       0.94      0.89      0.92        19
+        rice       1.00      0.89      0.94        19
   watermelon       1.00      1.00      1.00        19
 
     accuracy                           0.99       440
    macro avg       0.99      0.99      0.99       440
 weighted avg       0.99      0.99      0.99       440
 
-LogisticRegression Accuracy: 0.9295
+LogisticRegression Accuracy: 0.9477
               precision    recall  f1-score   support
 
        apple       1.00      1.00      1.00        23
       banana       1.00      1.00      1.00        21
    blackgram       0.77      0.85      0.81        20
     chickpea       1.00      1.00      1.00        26
-     coconut       1.00      0.96      0.98        27
-      coffee       0.89      0.94      0.91        17
+     coconut       1.00      1.00      1.00        27
+      coffee       0.94      1.00      0.97        17
       cotton       0.83      0.88      0.86        17
       grapes       1.00      1.00      1.00        14
-        jute       0.81      0.74      0.77        23
- kidneybeans       0.95      1.00      0.98        20
-      lentil       0.69      0.82      0.75        11
+        jute       0.87      0.87      0.87        23
+ kidneybeans       1.00      1.00      1.00        20
+      lentil       0.77      0.91      0.83        11
        maize       0.90      0.86      0.88        21
        mango       1.00      1.00      1.00        19
-   mothbeans       0.91      0.88      0.89        24
-    mungbean       1.00      1.00      1.00        19
+   mothbeans       0.91      0.83      0.87        24
+    mungbean       0.95      1.00      0.97        19
    muskmelon       1.00      1.00      1.00        17
-      orange       0.93      1.00      0.97        14
-      papaya       0.88      0.96      0.92        23
-  pigeonpeas       0.95      0.78      0.86        23
- pomegranate       1.00      0.96      0.98        23
-        rice       0.84      0.84      0.84        19
+      orange       1.00      1.00      1.00        14
+      papaya       0.96      0.96      0.96        23
+  pigeonpeas       1.00      0.87      0.93        23
+ pomegranate       1.00      1.00      1.00        23
+        rice       0.89      0.84      0.86        19
   watermelon       1.00      1.00      1.00        19
 
-    accuracy                           0.93       440
-   macro avg       0.93      0.93      0.93       440
-weighted avg       0.93      0.93      0.93       440
+    accuracy                           0.95       440
+   macro avg       0.95      0.95      0.95       440
+weighted avg       0.95      0.95      0.95       440

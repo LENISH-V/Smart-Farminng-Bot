@@ -1,48 +1,51 @@
+# api/main.py
 from fastapi import FastAPI
 from model import CropFeatures
 import joblib
 import numpy as np
+import joblib
 import os
 
 # Create FastAPI instance
 app = FastAPI(
     title="Smart Farming Crop Recommendation API",
-    description="Predict the most suitable crop based on soil and environmental conditions 🌱",
-    version="1.0.0"
+    description="Predict the most suitable crop based on soil and weather data",
+    version="2.0"
 )
 
-# Load trained model from the correct folder
-model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ml_model", "crop_model.pkl"))
+# Load the trained model
+model_path = os.path.join("..", "ml_model", "crop_model.pkl")
+model = joblib.load(model_path)
 
-try:
-    model = joblib.load(model_path)
-    print("Model loaded successfully!")
-except Exception as e:
-    print(f"Failed to load model: {e}")
-    model = None
+# Default values for missing inputs
+DEFAULTS = {
+    "N": 50,
+    "P": 40,
+    "K": 40,
+    "temperature": 25.0,
+    "humidity": 70.0,
+    "ph": 6.5,
+    "rainfall": 120.0
+}
 
-# Root endpoint
 @app.get("/")
-def root():
-    return {"message": "Welcome to the Smart Farming Recommender API!"}
+def read_root():
+    return {"message": "Welcome to Smart Farming Crop Recommender!"}
 
-# Predict endpoint
-@app.post("/predict")
+@app.post("/predict_crop")
 def predict_crop(data: CropFeatures):
     try:
-        if model is None:
-            return {"error": "Model not loaded"}
-
-        features = np.array([[
-            data.N,
-            data.P,
-            data.K,
-            data.temperature,
-            data.humidity,
-            data.ph,
-            data.rainfall
-        ]])
-        prediction = model.predict(features)
-        return {"recommended_crop": str(prediction[0])}
+        # Use user input or fallback to default
+        features = [
+            data.N if data.N is not None else DEFAULTS["N"],
+            data.P if data.P is not None else DEFAULTS["P"],
+            data.K if data.K is not None else DEFAULTS["K"],
+            data.temperature if data.temperature is not None else DEFAULTS["temperature"],
+            data.humidity if data.humidity is not None else DEFAULTS["humidity"],
+            data.ph if data.ph is not None else DEFAULTS["ph"],
+            data.rainfall if data.rainfall is not None else DEFAULTS["rainfall"],
+        ]
+        prediction = model.predict([features])
+        return {"recommended_crop": prediction[0]}
     except Exception as e:
         return {"error": str(e)}
