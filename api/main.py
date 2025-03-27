@@ -1,6 +1,6 @@
 # api/main.py
 from fastapi import FastAPI
-from model import CropFeatures
+from models import CropFeatures
 import joblib
 import numpy as np
 import joblib
