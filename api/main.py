@@ -20,7 +20,7 @@ model_path = "ml_model/crop_model.pkl"
 model = joblib.load(model_path)
 
 
-with open("/workspaces/Smart-Farminng-Bot/ml_model/best_fert.pkl", "rb") as f:
+with open("ml_model/best_fert.pkl", "rb") as f:
     best_model = pickle.load(f)
 
 # Define a mapping for fertilizer names to their NPK values.
