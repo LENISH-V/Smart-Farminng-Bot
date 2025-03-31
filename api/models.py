@@ -10,3 +10,7 @@ class CropFeatures(BaseModel):
     humidity: Optional[float] = None
     ph: Optional[float] = None
     rainfall: Optional[float] = None
+
+class RecommendationRequest(BaseModel):
+    soil_type: str
+    crop_type: str
