@@ -1,0 +1,499 @@
+@prefix : <http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/> .
+
+<http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming> rdf:type owl:Ontology .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#string
+xsd:string owl:equivalentClass xsd:string .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/EnvironmentalFactor
+:EnvironmentalFactor rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Crop ;
+                     rdfs:range :EnvironmentalFactor .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/GrowsIn
+:GrowsIn rdf:type owl:ObjectProperty ;
+         rdfs:domain :Crop ;
+         rdfs:range :Soil .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/affects
+:affects rdf:type owl:ObjectProperty ;
+         rdfs:domain :Weather ;
+         rdfs:range :Crop ;
+         rdfs:comment "Indicates how weather conditions impact crop health and growth." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/characterizedBy
+:characterizedBy rdf:type owl:ObjectProperty ;
+                 rdfs:domain :GeoLocation ;
+                 rdfs:range :EnvironmentalFactor ;
+                 rdfs:comment "Describes the environmental conditions typical of specific geographic locations." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/grownIn
+:grownIn rdf:type owl:ObjectProperty ;
+         rdfs:domain :Crop ;
+         rdfs:range :GeoLocation ;
+         rdfs:comment "Specifies the geographic locations where different crops are grown." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/hasCropManagement
+:hasCropManagement rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Crop ;
+                   rdfs:range :CropManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/needsPestManagement
+:needsPestManagement rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Crop ;
+                     rdfs:range :PestManagement ;
+                     rdfs:comment "Indicates which pest management practices are necessary for particular crops." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/receivesFertilization
+:receivesFertilization rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Crop ;
+                       rdfs:range :Fertilization ;
+                       rdfs:comment "Connects crops to the fertilization treatments they receive" .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/supports
+:supports rdf:type owl:ObjectProperty ;
+          rdfs:domain :Soil ;
+          rdfs:range :Crop ;
+          rdfs:comment "Specifies which soil types are best suited for different crops." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/utilizes
+:utilizes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Crop ;
+          rdfs:range :WaterManagement ;
+          rdfs:comment "Links crops to specific water management strategies that they utilize." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#K()Potassium
+<http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#K()Potassium> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:domain :Fertilization ;
+                                                                                rdfs:range xsd:int ;
+                                                                                rdfs:comment "Potassium content, measured in kg/ha." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#N(Nitrogen)
+<http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#N(Nitrogen)> rdf:type owl:DatatypeProperty ;
+                                                                               rdfs:domain :Fertilization ;
+                                                                               rdfs:range xsd:int ;
+                                                                               rdfs:comment "Nitrogen content in the fertilizer, measured in kg/ha." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#P(Phosphours)
+<http://www.semanticweb.org/lensv/ontologies/2025/2/Smart_Farming#P(Phosphours)> rdf:type owl:DatatypeProperty ;
+                                                                                 rdfs:domain :Fertilization ;
+                                                                                 rdfs:range xsd:int ;
+                                                                                 rdfs:comment "Phosphorus content, measured in kg/ha." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/co2Concentration
+:co2Concentration rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Weather ;
+                  rdfs:range xsd:float ;
+                  rdfs:comment "CO2 concentration in the area, measured in parts per million (ppm)." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/cropDensity
+:cropDensity rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Crop ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Density of the crop planting, measured in plants per area." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/fertilizerUsage
+:fertilizerUsage rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Fertilization ;
+                 rdfs:range xsd:float ;
+                 rdfs:comment "Amount of fertilizer used, measured in kg/ha." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/frostRisk
+:frostRisk rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Weather ;
+           rdfs:range xsd:float ;
+           rdfs:comment "Risk of frost, possibly as a percentage or risk level." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/growthStage
+:growthStage rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Crop ;
+             rdfs:range xsd:int ;
+             rdfs:comment "Current stage of crop growth." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/humidity
+:humidity rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Weather ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Current humidity percentage." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/irrigationFrequency
+:irrigationFrequency rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :WaterManagement ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "How often the crops are irrigated, measured in number of times per week." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/label
+:label rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Crop ;
+       rdfs:range xsd:string ;
+       rdfs:comment "The type of crop (e.g., rice, wheat)." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/latitude
+:latitude rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GeoLocation ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Latitude coordinate of the farming location." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/longitude
+:longitude rdf:type owl:DatatypeProperty ;
+           rdfs:domain :GeoLocation ;
+           rdfs:range xsd:float ;
+           rdfs:comment "Longitude coordinate of the farming location." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/organicMatter
+:organicMatter rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Soil ;
+               rdfs:range xsd:float ;
+               rdfs:comment "Amount of organic matter in the soil, measured as a percentage." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/pestPressure
+:pestPressure rdf:type owl:DatatypeProperty ;
+              rdfs:domain :PestManagement ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Level of pest infestation, potentially measured as an index or count." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/ph
+:ph rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Soil ;
+    rdfs:range xsd:float ;
+    rdfs:comment "pH level of the soil, indicating acidity or alkalinity" .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/rainfall
+:rainfall rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Weather ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Amount of rainfall in millimeters." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/soilMoisture
+:soilMoisture rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Soil ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Moisture level in the soil, measured as a percentage." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/soilType
+:soilType rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Soil ;
+          rdfs:range xsd:int ;
+          rdfs:comment "Numerical identifier for types of soil (e.g., 1 for clay, 2 for sandy)." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/temperature
+:temperature rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Weather ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Current temperature in degrees Celsius." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/urbanAreaProximity
+:urbanAreaProximity rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :CropManagement ;
+                    rdfs:range xsd:float ;
+                    rdfs:comment "Proximity to urban areas, measured in kilometers." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/waterSourceType
+:waterSourceType rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :WaterManagement ;
+                 rdfs:range xsd:int ;
+                 rdfs:comment "Type of water source (e.g., 1 for river, 2 for groundwater)." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/waterUsageEfficiency
+:waterUsageEfficiency rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :WaterManagement ;
+                      rdfs:range xsd:float ;
+                      rdfs:comment "Efficiency of water usage, potentially as a ratio or percentage." .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/windSpeed
+:windSpeed rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Weather ;
+           rdfs:range xsd:float ;
+           rdfs:comment "Speed of wind in kilometers per hour." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/AgriculturalPractice
+:AgriculturalPractice rdf:type owl:Class ;
+                      rdfs:subClassOf :FarmingEntity .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/AgriculturalResource
+:AgriculturalResource rdf:type owl:Class ;
+                      rdfs:subClassOf :FarmingEntity .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Crop
+:Crop rdf:type owl:Class ;
+      rdfs:subClassOf :FarmingEntity .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/CropManagement
+:CropManagement rdf:type owl:Class ;
+                rdfs:subClassOf :AgriculturalPractice .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/EnvironmentalFactor
+:EnvironmentalFactor rdf:type owl:Class ;
+                     rdfs:subClassOf :FarmingEntity .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/FarmingEntity
+:FarmingEntity rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Fertilization
+:Fertilization rdf:type owl:Class ;
+               rdfs:subClassOf :AgriculturalResource .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/GeoLocation
+:GeoLocation rdf:type owl:Class ;
+             rdfs:subClassOf :FarmingEntity .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/HighWaterUsage
+:HighWaterUsage rdf:type owl:Class ;
+                rdfs:subClassOf :WaterManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/LowMoistureSoil
+:LowMoistureSoil rdf:type owl:Class ;
+                 rdfs:subClassOf :Soil .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/PestManagement
+:PestManagement rdf:type owl:Class ;
+                rdfs:subClassOf :AgriculturalPractice .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Soil
+:Soil rdf:type owl:Class ;
+      rdfs:subClassOf :EnvironmentalFactor .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/WaterManagement
+:WaterManagement rdf:type owl:Class ;
+                 rdfs:subClassOf :AgriculturalResource .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Weather
+:Weather rdf:type owl:Class ;
+         rdfs:subClassOf :EnvironmentalFactor .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/ClaySoil
+:ClaySoil rdf:type owl:NamedIndividual ,
+                   :Soil ;
+          :supports :Rice .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/ColdFront
+:ColdFront rdf:type owl:NamedIndividual ,
+                    :Weather ;
+           :affects :Rice .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Compost
+:Compost rdf:type owl:NamedIndividual ,
+                  :Fertilization .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Corn
+:Corn rdf:type owl:NamedIndividual ,
+               :Crop ;
+      :EnvironmentalFactor :DrySeason ;
+      :GrowsIn :FarmLocation1 ;
+      :grownIn :SandySoil ;
+      :hasCropManagement :HighDensityPlanting ;
+      :needsPestManagement :InsecticideTreatment ;
+      :receivesFertilization :NPK_Fertilizer ;
+      :utilizes :DripIrrigation ;
+      :label "Corn" .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/DripIrrigation
+:DripIrrigation rdf:type owl:NamedIndividual ,
+                         :WaterManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/DrySeason
+:DrySeason rdf:type owl:NamedIndividual ,
+                    :Weather ;
+           :affects :Wheat .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/FarmLocation1
+:FarmLocation1 rdf:type owl:NamedIndividual ,
+                        :GeoLocation ;
+               :characterizedBy :DrySeason .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/FieldSite2
+:FieldSite2 rdf:type owl:NamedIndividual ,
+                     :GeoLocation ;
+            :characterizedBy :WetSeason .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/FloodIrrigation
+:FloodIrrigation rdf:type owl:NamedIndividual ,
+                          :WaterManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/FungalSpray
+:FungalSpray rdf:type owl:NamedIndividual ,
+                      :PestManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Greenhouse1
+:Greenhouse1 rdf:type owl:NamedIndividual ,
+                      :GeoLocation ;
+             :characterizedBy :ColdFront .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/HighDensityPlanting
+:HighDensityPlanting rdf:type owl:NamedIndividual ,
+                              :CropManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/InsecticideTreatment
+:InsecticideTreatment rdf:type owl:NamedIndividual ,
+                               :PestManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Intercropping
+:Intercropping rdf:type owl:NamedIndividual ,
+                        :CropManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/LoamySoil
+:LoamySoil rdf:type owl:NamedIndividual ,
+                    :Soil ;
+           :supports :Wheat .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/LowDensityPlanting
+:LowDensityPlanting rdf:type owl:NamedIndividual ,
+                             :CropManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Manure
+:Manure rdf:type owl:NamedIndividual ,
+                 :Fertilization .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/NPK_Fertilizer
+:NPK_Fertilizer rdf:type owl:NamedIndividual ,
+                         :Fertilization .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/OrganicPesticide
+:OrganicPesticide rdf:type owl:NamedIndividual ,
+                           :PestManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Rice
+:Rice rdf:type owl:NamedIndividual ,
+               :Crop ;
+      :EnvironmentalFactor :ColdFront ;
+      :GrowsIn :Greenhouse1 ;
+      :grownIn :ClaySoil ;
+      :hasCropManagement :LowDensityPlanting ;
+      :needsPestManagement :FungalSpray ;
+      :receivesFertilization :Compost ;
+      :utilizes :FloodIrrigation ;
+      :label "Rice" .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/SandySoil
+:SandySoil rdf:type owl:NamedIndividual ,
+                    :Soil ;
+           :supports :Corn .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/SprinklerIrrigation
+:SprinklerIrrigation rdf:type owl:NamedIndividual ,
+                              :WaterManagement .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/WetSeason
+:WetSeason rdf:type owl:NamedIndividual ,
+                    :Weather ;
+           :affects :Corn .
+
+
+###  http://www.semanticweb.org/lensv/ontologies/2025/2/untitled-ontology-13/Wheat
+:Wheat rdf:type owl:NamedIndividual ,
+                :Crop ;
+       :EnvironmentalFactor :WetSeason ;
+       :GrowsIn :FieldSite2 ;
+       :grownIn :LoamySoil ;
+       :hasCropManagement :Intercropping ;
+       :needsPestManagement :OrganicPesticide ;
+       :receivesFertilization :Manure ;
+       :utilizes :SprinklerIrrigation ;
+       :label "Wheat" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:EnvironmentalFactor rdfs:comment "Connects crops to various environmental factors they are subjected to (like specific weather conditions or soil types)" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
