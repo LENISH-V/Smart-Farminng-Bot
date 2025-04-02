@@ -8,5 +8,4 @@ fastapi
 uvicorn
 pydantic
 fastapi
-difflib
 rdflib
