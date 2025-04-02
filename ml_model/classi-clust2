@@ -1,0 +1,109 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Load dataset
+df = pd.read_csv("crop_recommendation.csv")
+
+# Select classification features
+classification_features = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
+X = df[classification_features]
+y = df["label"]  # Crop label
+
+# Train/Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and Train Models
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+
+# Predict Crops
+df["Predicted_Crop"] = rf_model.predict(X)
+
+# Select relevant numerical features for clustering
+cluster_features = ["temperature", "humidity", "ph", "rainfall", "soil_moisture"]
+data = df[cluster_features]
+
+# Normalize data for better clustering performance
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(data)
+
+# Apply K-Means clustering
+num_clusters = 5
+kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
+df["Cluster"] = kmeans.fit_predict(data_scaled)
+
+# Assign meaningful cluster labels
+cluster_labels = {
+    0: "Tropical Dry Zone",
+    1: "Moderate Climate Zone",
+    2: "Cool & Arid Zone",
+    3: "Humid Fertile Zone",
+    4: "High Rainfall Zone"
+}
+df["Farm_Type"] = df["Cluster"].map(cluster_labels)
+
+# Assign all crops to their respective farm types
+crop_assignment = df.groupby(["Farm_Type", "Predicted_Crop"]).size().reset_index(name="Count")
+
+# Display results
+print(crop_assignment)
+
+from sklearn.metrics import precision_score, recall_score, f1_score, ConfusionMatrixDisplay
+
+# Evaluate classification performance
+y_pred = rf_model.predict(X_test)
+
+# Calculate metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
+
+# Print metrics
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1 Score: {f1:.2f}")
+
+# Plot confusion matrix
+ConfusionMatrixDisplay.from_estimator(rf_model, X_test, y_test, cmap='Blues', xticks_rotation='vertical')
+plt.title("Confusion Matrix")
+plt.show()
+
+# ERROR ANALYSIS
+# Create a DataFrame to compare actual and predicted labels
+error_analysis_df = pd.DataFrame({
+    "Actual": y_test,
+    "Predicted": y_pred
+})
+
+# Identify misclassified samples
+misclassified = error_analysis_df[error_analysis_df["Actual"] != error_analysis_df["Predicted"]]
+
+# Print the number of misclassified samples
+print(f"Number of misclassified samples: {len(misclassified)}")
+
+# Display a few misclassified samples for inspection
+print("Sample misclassified instances:")
+print(misclassified.head())
+
+# Analyze the distribution of misclassifications
+misclassification_summary = misclassified.groupby(["Actual", "Predicted"]).size().reset_index(name="Count")
+print("Misclassification summary:")
+print(misclassification_summary)
+
+# Visualize misclassifications using a heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(pd.crosstab(misclassified["Actual"], misclassified["Predicted"]), annot=True, fmt="d", cmap="Reds")
+plt.title("Misclassification Heatmap")
+plt.xlabel("Predicted Label")
+plt.ylabel("Actual Label")
+plt.show()
