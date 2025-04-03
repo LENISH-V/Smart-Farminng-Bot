@@ -105,9 +105,7 @@ Fertilizer Prediction.csv: Data for fertilizer matching
 
 APIs are deployed on the render.con via github.
 
-if wants to deploy by yourself Use render.yaml and Procfile for automatic builds
-
-Ensure models and dependencies are bundled during deployment
+In order to run this project you just have to upload N8N work flow, then activate it and make necessary changed to telegram api and you can make your own bot with different name.
 
 Installation
 
