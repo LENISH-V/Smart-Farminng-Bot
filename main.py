@@ -7,7 +7,7 @@ app = FastAPI()
 
 # Load TTL file
 g = Graph()
-g.parse("smart_farming_enriched.ttl", format="ttl")
+g.parse("smart_farming_enriched_labeled.ttl", format="ttl")
 
 sf = Namespace("http://www.smartfarming.org/ontology#")
 
