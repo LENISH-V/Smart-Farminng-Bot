@@ -18,25 +18,6 @@ The entire interaction — from the user typing a query on Telegram to receiving
 
 —
 
-📁 Project Structure
-
-. ├── api/
-│ ├── main.py → FastAPI app entrypoint
-│ └── models.py → Input schema (Pydantic)
-├── ml_model/
-│ ├── best_fert.pkl → Trained fertilizer model
-│ └── crop_model.pkl → Trained crop model
-├── Data/
-│ ├── crop_recommendation.csv
-│ └── Fertilizer Prediction.csv
-├── workflows/
-│ └── n8n_workflow.json → n8n export file (Telegram ↔ API)
-├── requirements.txt
-├── render.yaml
-└── procfile
-
-—
-
 🤖 Telegram Bot Integration (DSAfarmingbot)
 
 Users interact via Telegram using @DSAFarmingBot
