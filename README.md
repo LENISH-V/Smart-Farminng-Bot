@@ -108,3 +108,10 @@ APIs are deployed on the render.con via github.
 if wants to deploy by yourself Use render.yaml and Procfile for automatic builds
 
 Ensure models and dependencies are bundled during deployment
+
+Installation
+
+git clone https://github.com/your-username/smart-farming-chatbot.git
+cd smart-farming-chatbot
+pip install -r requirements.txt
+
