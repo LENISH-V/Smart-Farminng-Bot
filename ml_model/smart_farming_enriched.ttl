@@ -1,0 +1,138 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.smartfarming.org/ontology#> .
+
+sf:Barley a sf:Crop .
+
+sf:Coffee a sf:Crop .
+
+sf:Cold a sf:Weather .
+
+sf:Compost a sf:Fertilizer .
+
+sf:Corn a sf:Crop ;
+    sf:grownIn sf:Sandy ;
+    sf:hasDisease sf:Blight ;
+    sf:hasWeather sf:Hot ;
+    sf:receivesFertilizer sf:NPK .
+
+sf:DAP a sf:Fertilizer .
+
+sf:Dry a sf:Weather .
+
+sf:Loamy a sf:Soil .
+
+sf:Manure a sf:Fertilizer .
+
+sf:Mildew a sf:Disease .
+
+sf:NeemOil a sf:Insecticide .
+
+sf:Onion a sf:Crop .
+
+sf:Peaty a sf:Soil .
+
+sf:Permethrin a sf:Insecticide .
+
+sf:Potato a sf:Crop .
+
+sf:Rice a sf:Crop ;
+    sf:grownIn sf:Clay ;
+    sf:hasDisease sf:BacterialLeafBlight ;
+    sf:hasWeather sf:Rainy ;
+    sf:receivesFertilizer sf:Urea .
+
+sf:RootRot a sf:Symptom .
+
+sf:Rust a sf:Disease .
+
+sf:Silty a sf:Soil .
+
+sf:Soybean a sf:Crop .
+
+sf:StuntedGrowth a sf:Symptom .
+
+sf:Sugarcane a sf:Crop .
+
+sf:Tomato a sf:Crop .
+
+sf:Wheat a sf:Crop .
+
+sf:Wilt a sf:Disease .
+
+sf:Wilting a sf:Symptom .
+
+sf:grownIn a owl:ObjectProperty ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Soil .
+
+sf:hasDisease a owl:ObjectProperty ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Disease .
+
+sf:hasWeather a owl:ObjectProperty ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Weather .
+
+sf:receivesFertilizer a owl:ObjectProperty ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Fertilizer .
+
+sf:showsSymptom a owl:ObjectProperty ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Symptom .
+
+sf:treatedBy a owl:ObjectProperty ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Insecticide .
+
+sf:triggeredBy a owl:ObjectProperty ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Weather .
+
+sf:BacterialLeafBlight a sf:Disease ;
+    sf:showsSymptom sf:YellowLeaves ;
+    sf:treatedBy sf:Carbaryl ;
+    sf:triggeredBy sf:Rainy .
+
+sf:Blight a sf:Disease ;
+    sf:showsSymptom sf:LeafSpots ;
+    sf:treatedBy sf:Malathion ;
+    sf:triggeredBy sf:Humid .
+
+sf:Carbaryl a sf:Insecticide .
+
+sf:Clay a sf:Soil .
+
+sf:Hot a sf:Weather .
+
+sf:Humid a sf:Weather .
+
+sf:LeafSpots a sf:Symptom .
+
+sf:Malathion a sf:Insecticide .
+
+sf:NPK a sf:Fertilizer .
+
+sf:Sandy a sf:Soil .
+
+sf:Urea a sf:Fertilizer .
+
+sf:YellowLeaves a sf:Symptom .
+
+sf:Rainy a sf:Weather .
+
+sf:Insecticide a owl:Class .
+
+sf:Fertilizer a owl:Class .
+
+sf:Soil a owl:Class .
+
+sf:Symptom a owl:Class .
+
+sf:Weather a owl:Class .
+
+sf:Disease a owl:Class .
+
+sf:Crop a owl:Class .
+
