@@ -1,0 +1,224 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.smartfarming.org/ontology#> .
+
+sf:Barley a sf:Crop ;
+    rdfs:label "Barley" ;
+    sf:grownIn sf:Loamy ;
+    sf:hasDisease sf:Rust ;
+    sf:hasWeather sf:Cold ;
+    sf:receivesFertilizer sf:Compost .
+
+sf:Coffee a sf:Crop ;
+    rdfs:label "Coffee" ;
+    sf:grownIn sf:Peaty ;
+    sf:hasDisease sf:Mildew ;
+    sf:hasWeather sf:Humid ;
+    sf:receivesFertilizer sf:Manure .
+
+sf:Corn a sf:Crop ;
+    rdfs:label "Corn" ;
+    sf:grownIn sf:Sandy ;
+    sf:hasDisease sf:Blight ;
+    sf:hasWeather sf:Hot ;
+    sf:receivesFertilizer sf:NPK .
+
+sf:Onion a sf:Crop ;
+    rdfs:label "Onion" ;
+    sf:grownIn sf:Sandy ;
+    sf:hasDisease sf:Wilt ;
+    sf:hasWeather sf:Dry ;
+    sf:receivesFertilizer sf:Urea .
+
+sf:Potato a sf:Crop ;
+    rdfs:label "Potato" ;
+    sf:grownIn sf:Silty ;
+    sf:hasDisease sf:BacterialLeafBlight ;
+    sf:hasWeather sf:Cold ;
+    sf:receivesFertilizer sf:DAP .
+
+sf:Rice a sf:Crop ;
+    rdfs:label "Rice" ;
+    sf:grownIn sf:Clay ;
+    sf:hasDisease sf:BacterialLeafBlight ;
+    sf:hasWeather sf:Rainy ;
+    sf:receivesFertilizer sf:Urea .
+
+sf:Soybean a sf:Crop ;
+    rdfs:label "Soybean" ;
+    sf:grownIn sf:Loamy ;
+    sf:hasDisease sf:Rust ;
+    sf:hasWeather sf:Rainy ;
+    sf:receivesFertilizer sf:NPK .
+
+sf:Sugarcane a sf:Crop ;
+    rdfs:label "Sugarcane" ;
+    sf:grownIn sf:Clay ;
+    sf:hasDisease sf:Blight ;
+    sf:hasWeather sf:Hot ;
+    sf:receivesFertilizer sf:Compost .
+
+sf:Tomato a sf:Crop ;
+    rdfs:label "Tomato" ;
+    sf:grownIn sf:Peaty ;
+    sf:hasDisease sf:Mildew ;
+    sf:hasWeather sf:Humid ;
+    sf:receivesFertilizer sf:Manure .
+
+sf:Wheat a sf:Crop ;
+    rdfs:label "Wheat" ;
+    sf:grownIn sf:Loamy ;
+    sf:hasDisease sf:Wilt ;
+    sf:hasWeather sf:Dry ;
+    sf:receivesFertilizer sf:DAP .
+
+sf:grownIn a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Soil .
+
+sf:hasDisease a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Disease .
+
+sf:hasWeather a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Weather .
+
+sf:receivesFertilizer a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Crop ;
+    rdfs:range sf:Fertilizer .
+
+sf:showsSymptom a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Symptom .
+
+sf:treatedBy a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Insecticide .
+
+sf:triggeredBy a <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+    rdfs:domain sf:Disease ;
+    rdfs:range sf:Weather .
+
+sf:Carbaryl a sf:Insecticide ;
+    rdfs:label "Carbaryl" .
+
+sf:LeafSpots a sf:Symptom ;
+    rdfs:label "LeafSpots" .
+
+sf:NeemOil a sf:Insecticide ;
+    rdfs:label "NeemOil" .
+
+sf:Permethrin a sf:Insecticide ;
+    rdfs:label "Permethrin" .
+
+sf:RootRot a sf:Symptom ;
+    rdfs:label "RootRot" .
+
+sf:Silty a sf:Soil ;
+    rdfs:label "Silty" .
+
+sf:StuntedGrowth a sf:Symptom ;
+    rdfs:label "StuntedGrowth" .
+
+sf:Wilting a sf:Symptom ;
+    rdfs:label "Wilting" .
+
+sf:YellowLeaves a sf:Symptom ;
+    rdfs:label "YellowLeaves" .
+
+sf:BacterialLeafBlight a sf:Disease ;
+    rdfs:label "BacterialLeafBlight" ;
+    sf:showsSymptom sf:YellowLeaves ;
+    sf:treatedBy sf:Carbaryl ;
+    sf:triggeredBy sf:Rainy .
+
+sf:Blight a sf:Disease ;
+    rdfs:label "Blight" ;
+    sf:showsSymptom sf:LeafSpots ;
+    sf:treatedBy sf:Malathion ;
+    sf:triggeredBy sf:Humid .
+
+sf:Clay a sf:Soil ;
+    rdfs:label "Clay" .
+
+sf:Compost a sf:Fertilizer ;
+    rdfs:label "Compost" .
+
+sf:DAP a sf:Fertilizer ;
+    rdfs:label "DAP" .
+
+sf:Dry a sf:Weather ;
+    rdfs:label "Dry" .
+
+sf:Malathion a sf:Insecticide ;
+    rdfs:label "Malathion" .
+
+sf:Manure a sf:Fertilizer ;
+    rdfs:label "Manure" .
+
+sf:Mildew a sf:Disease ;
+    rdfs:label "Mildew" ;
+    sf:showsSymptom sf:RootRot ;
+    sf:treatedBy sf:NeemOil ;
+    sf:triggeredBy sf:Humid .
+
+sf:NPK a sf:Fertilizer ;
+    rdfs:label "NPK" .
+
+sf:Peaty a sf:Soil ;
+    rdfs:label "Peaty" .
+
+sf:Rust a sf:Disease ;
+    rdfs:label "Rust" ;
+    sf:showsSymptom sf:StuntedGrowth ;
+    sf:treatedBy sf:Permethrin ;
+    sf:triggeredBy sf:Cold .
+
+sf:Sandy a sf:Soil ;
+    rdfs:label "Sandy" .
+
+sf:Urea a sf:Fertilizer ;
+    rdfs:label "Urea" .
+
+sf:Wilt a sf:Disease ;
+    rdfs:label "Wilt" ;
+    sf:showsSymptom sf:Wilting ;
+    sf:treatedBy sf:Malathion ;
+    sf:triggeredBy sf:Hot .
+
+sf:Cold a sf:Weather ;
+    rdfs:label "Cold" .
+
+sf:Hot a sf:Weather ;
+    rdfs:label "Hot" .
+
+sf:Loamy a sf:Soil ;
+    rdfs:label "Loamy" .
+
+sf:Rainy a sf:Weather ;
+    rdfs:label "Rainy" .
+
+sf:Humid a sf:Weather ;
+    rdfs:label "Humid" .
+
+sf:Insecticide a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Chemical treatments used to manage crop diseases." .
+
+sf:Fertilizer a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Fertilizers applied to enhance crop growth." .
+
+sf:Soil a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Different types of soils suitable for crops." .
+
+sf:Symptom a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Observable symptoms caused by diseases." .
+
+sf:Weather a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Weather conditions that affect crop and disease dynamics." .
+
+sf:Disease a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Diseases that may affect crops." .
+
+sf:Crop a <http://www.w3.org/2002/07/owl#Class> ;
+    rdfs:comment "Represents various crops cultivated in agriculture." .
+
