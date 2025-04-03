@@ -120,7 +120,7 @@ Fertilizer Prediction.csv: Data for fertilizer matching
 
 —
 
-🌐 Deployment (Optional)
+🌐 Deployment
 
 APIs are deployed on the render.con via github.
 
